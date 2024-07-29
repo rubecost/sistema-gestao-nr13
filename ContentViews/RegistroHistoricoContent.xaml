@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:Cronos.ViewModels"
+             xmlns:cursores="clr-namespace:Cronos.Platforms.Windows"
+             x:Class="Cronos.ContentViews.RegistroHistoricoContent">
+
+    <ContentView.BindingContext>
+        <viewmodel:RegistroHistoricoViewModel />
+    </ContentView.BindingContext>
+
+    <StackLayout Margin="20">
+        <Label Text="Registro Histórico"
+               FontSize="18"
+               FontFamily="PoppinsSemiBold"
+               TextColor="White"
+               HorizontalTextAlignment="Start"
+               SemanticProperties.HeadingLevel="Level1" />
+        <Label Text="Registro Histórico"
+               FontSize="9"
+               TextColor="#8A8A8A"
+               FontFamily="PoppinsLight"
+               HorizontalTextAlignment="Start" />
+
+        <Frame BackgroundColor="#252525"
+               Padding="0"
+               BorderColor="Transparent"
+               CornerRadius="2"
+               Margin="0,10,0,0">
+            <Grid>
+                <ScrollView Orientation="Horizontal"
+                            Margin="20,20,3,40">
+                    <Grid RowSpacing="10"
+                          Margin="0,0,25,30"
+                          ColumnDefinitions="250,250,200,150,300,150">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Text="Usuário"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               FontFamily="PoppinsRegular" />
+                        <Label Grid.Row="0"
+                               Grid.Column="1"
+                               Text="Unidade"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               FontFamily="PoppinsRegular" />
+                        <Label Grid.Row="0"
+                               Grid.Column="2"
+                               Text="Setor"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               FontFamily="PoppinsRegular" />
+                        <Label Grid.Row="0"
+                               Grid.Column="3"
+                               Text="Tipo de Atualização"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               FontFamily="PoppinsRegular" />
+                        <Label Grid.Row="0"
+                               Grid.Column="4"
+                               Text="Item Atualizado"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               FontFamily="PoppinsRegular" />
+                        <Label Grid.Row="0"
+                               Grid.Column="5"
+                               Text="Data e Hora"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               FontFamily="PoppinsRegular" />
+                        <!-- Lista de informações dos equipamentos -->
+                        <CollectionView Grid.Row="1"
+                                        Grid.ColumnSpan="13"
+                                        ItemsSource="{Binding Registros}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="250,250,200,150,300,150"
+                                          RowSpacing="10">
+                                        <Frame Grid.Column="0"
+                                               Style="{DynamicResource FrameEQPStyle}">
+                                            <Label Style="{DynamicResource LabelEQPStyle}"
+                                                   Text="{Binding Email_Usuario}" />
+                                        </Frame>
+                                        <Frame Grid.Column="1"
+                                               Style="{DynamicResource FrameEQPStyle}">
+                                            <Label Style="{DynamicResource LabelEQPStyle}"
+                                                   Text="{Binding Nome_Unidade}" />
+                                        </Frame>
+                                        <Frame Grid.Column="2"
+                                               Style="{DynamicResource FrameEQPStyle}">
+                                            <Label Style="{DynamicResource LabelEQPStyle}"
+                                                   Text="{Binding Setor}" />
+                                        </Frame>
+                                        <Frame Grid.Column="3"
+                                               Style="{DynamicResource FrameEQPStyle}">
+                                            <Label Style="{DynamicResource LabelEQPStyle}"
+                                                   Text="{Binding TipoAtualizacao}" />
+                                        </Frame>
+                                        <Frame Grid.Column="4"
+                                               Style="{DynamicResource FrameEQPStyle}">
+                                            <Label Style="{DynamicResource LabelEQPStyle}"
+                                                   Text="{Binding Item_Atualizado}" />
+                                        </Frame>
+                                        <Frame Grid.Column="5"
+                                               Style="{DynamicResource FrameEQPStyle}">
+                                            <Label Style="{DynamicResource LabelEQPStyle}"
+                                                   Text="{Binding Data_Hora}" />
+                                        </Frame>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </ScrollView>
+                <!-- BUTTONS DE NAVEGAÇÃO -->
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="End"
+                             HorizontalOptions="End"
+                             Margin="0,0,20,10"
+                             IsVisible="False">
+                    <!-- Ver resultados anteriores -->
+                    <Label IsVisible="True"
+                           VerticalOptions="End"
+                           HorizontalOptions="End"
+                           cursores:CursorBehavior.Cursor="Hand"
+                           Margin="0,0,10,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="&#xe947;"
+                                      FontSize="11"
+                                      FontFamily="icons"
+                                      TextColor="White" />
+                                <Span Text=" Anterior"
+                                      FontSize="12"
+                                      FontFamily="PoppinsRegular"
+                                      TextColor="White" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Btn_NavegarResultados}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!-- Ver próximos resultados -->
+                    <Label IsVisible="True"
+                           VerticalOptions="End"
+                           HorizontalOptions="End"
+                           cursores:CursorBehavior.Cursor="Hand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Próximo "
+                                      FontSize="12"
+                                      FontFamily="PoppinsRegular"
+                                      TextColor="White" />
+                                <Span Text="&#xe946;"
+                                      FontSize="11"
+                                      FontFamily="icons"
+                                      TextColor="White" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Btn_NavegarResultados}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</ContentView>

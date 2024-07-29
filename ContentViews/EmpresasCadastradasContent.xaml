@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cursores="clr-namespace:Cronos.Platforms.Windows"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:Cronos.ViewModels"
+             x:Class="Cronos.ContentViews.EmpresasCadastradasContent">
+
+    <ContentView.BindingContext>
+        <viewmodels:EmpresasCadastradasViewModel />
+    </ContentView.BindingContext>
+    <Grid>
+        <StackLayout Margin="20">
+            <Label Text="Empresas cadastradas"
+                   FontSize="18"
+                   FontFamily="PoppinsSemiBold"
+                   TextColor="White"
+                   HorizontalTextAlignment="Start"
+                   SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Empresas cadastradas"
+                   FontSize="9"
+                   TextColor="#8A8A8A"
+                   FontFamily="PoppinsLight"
+                   HorizontalTextAlignment="Start"/>
+            <CollectionView ItemsSource="{Binding DadosEmpresa}" >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="0"
+                               BackgroundColor="#252525"
+                               BorderColor="Transparent"
+                               CornerRadius="2"
+                               Margin="0,10,0,10">
+                            <Grid RowDefinitions="auto,*"
+                                  ColumnDefinitions="*,*,*"
+                                  ColumnSpacing="20"
+                                  RowSpacing="10"
+                                  Margin="20">
+                                <Grid Grid.Row="0"
+                                      Grid.ColumnSpan="4"
+                                      ToolTipProperties.Text="Acessar os dados desta empresa">
+                                    <!-- Button selecionar essa empresa -->
+                                    <Label Text="&#xe949;"
+                                           FontFamily="icons"
+                                           TextColor="#8A8A8A"
+                                           FontSize="30"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Start"
+                                           cursores:CursorBehavior.Cursor="Hand" />
+                                    <Label Text="&#xe94a;"
+                                           FontFamily="icons"
+                                           TextColor="#089451"
+                                           FontSize="30"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Start"
+                                           cursores:CursorBehavior.Cursor="Hand" />
+                                </Grid>
+                                <!-- COLUNA NOME EMPRESA E LISTA DE UNIDADE -->
+                                <Frame Grid.Row="1"
+                                       Grid.Column="0"
+                                       Padding="0"
+                                       CornerRadius="3"
+                                       BorderColor="Transparent"
+                                       BackgroundColor="#1F1F1F">
+                                    <StackLayout Margin="20">
+                                        <Grid ColumnDefinitions="auto,*"
+                                              ColumnSpacing="20">
+                                            <Label Grid.Column="0"
+                                                   Text="&#xe92f;"
+                                                   FontFamily="icons"
+                                                   TextColor="#8A8A8A"
+                                                   FontSize="70"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Start"
+                                                   cursores:CursorBehavior.Cursor="Hand" />
+                                            <StackLayout Grid.Column="1">
+                                                <Label Text="Empresa"
+                                                       FontFamily="PoppinsRegular"
+                                                       FontSize="14"
+                                                       TextColor="#8A8A8A"
+                                                       Margin="0,10,0,5" />
+                                                <!-- Exibe nome da empresa -->
+                                                <Label Text="{Binding Empresas.Nome}"
+                                                       FontFamily="PoppinsLight"
+                                                       FontSize="14"
+                                                       TextColor="White" />
+                                            </StackLayout>
+                                        </Grid>
+                                        <Label Text="Mudar sua unidade atual:"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="11"
+                                               TextColor="#8A8A8A"
+                                               Margin="0,10,0,5" />
+                                        <!-- Lista de Unidade -->
+                                        <Frame Grid.Row="0"
+                                               Grid.Column="0"
+                                               Grid.ColumnSpan="2"
+                                               CornerRadius="5"
+                                               Padding="0"
+                                               HeightRequest="100"
+                                               BackgroundColor="#252525"
+                                               BorderColor="Transparent">
+                                            <ScrollView Padding="5,0,15,5">
+                                                <CollectionView ItemsSource="{Binding Unidades}"
+                                                                Margin="0,5,0,5"
+                                                                x:Name="CltUnidades">
+                                                    <CollectionView.ItemsLayout>
+                                                        <LinearItemsLayout Orientation="Vertical" />
+                                                    </CollectionView.ItemsLayout>
+                                                    <CollectionView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <RadioButton Content="{Binding Nome}"
+                                                                         FontFamily="PoppinsRegular"
+                                                                         FontSize="12"
+                                                                         TextColor="White"
+                                                                         HorizontalOptions="Start"
+                                                                         VerticalOptions="Start"
+                                                                         cursores:CursorBehavior.Cursor="Hand" />
+                                                        </DataTemplate>
+                                                    </CollectionView.ItemTemplate>
+                                                </CollectionView>
+                                            </ScrollView>
+                                        </Frame>
+                                        <Label Text="Após escolher a Unidade acima clique em “CONFIRMAR MUDANÇA”."
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="11"
+                                               TextColor="#8A8A8A"
+                                               Margin="0,10,0,10" />
+                                        <!-- Button Confirmar Mudança de Unidade -->
+                                        <Button Text="Confirmar Mudança"
+                                                HorizontalOptions="Start"
+                                                cursores:CursorBehavior.Cursor="Hand" />
+                                    </StackLayout>
+                                </Frame>
+                                <!-- COLUNA DADOS UNIDADE SELECIONADA -->
+                                <Frame Grid.Row="1"
+                                       Grid.Column="1"
+                                       Padding="0"
+                                       CornerRadius="3"
+                                       BorderColor="Transparent"
+                                       BackgroundColor="#1F1F1F">
+                                    <StackLayout Margin="20">
+                                        <Label Text="Dados Unidade Atual"
+                                               FontFamily="PoppinsSemiBold"
+                                               FontSize="15"
+                                               TextColor="White"
+                                               Margin="0,0,0,10" />
+                                        <!-- Exibir Unidade -->
+                                        <Label Text="Unidade:"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="14"
+                                               TextColor="#8E8E8E" />
+                                        <Label Text="{Binding Unidades[0].Nome}"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="13"
+                                               TextColor="White"
+                                               Margin="0,0,0,5" />
+                                        <!-- Exibir Responsável -->
+                                        <Label Text="Responsável:"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="14"
+                                               TextColor="#8E8E8E" />
+                                        <Label Text="{Binding Unidades[0].Responsavel}"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="13"
+                                               TextColor="White"
+                                               Margin="0,0,0,5" />
+                                        <!-- Exibir E-Mail -->
+                                        <Label Text="E-Mail:"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="14"
+                                               TextColor="#8E8E8E" />
+                                        <Label Text="{Binding Unidades[0].Email}"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="13"
+                                               TextColor="White"
+                                               Margin="0,0,0,5" />
+                                        <Grid ColumnDefinitions="*,*">
+                                            <StackLayout Grid.Column="0">
+                                                <!-- Exibir Telefone -->
+                                                <Label Text="Telefone:"
+                                                       FontFamily="PoppinsRegular"
+                                                       FontSize="14"
+                                                       TextColor="#8E8E8E" />
+                                                <Label Text="{Binding TelFixo}"
+                                                       FontFamily="PoppinsRegular"
+                                                       FontSize="13"
+                                                       TextColor="White"
+                                                       Margin="0,0,0,5" />
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="1">
+                                                <!-- Exibir Celular -->
+                                                <Label Text="Celular:"
+                                                       FontFamily="PoppinsRegular"
+                                                       FontSize="14"
+                                                       TextColor="#8E8E8E" />
+                                                <Label Text="{Binding TelCelular}"
+                                                       FontFamily="PoppinsRegular"
+                                                       FontSize="13"
+                                                       TextColor="White"
+                                                       Margin="0,0,0,5" />
+                                            </StackLayout>
+                                        </Grid>
+                                        <!-- Exibir Endereço Físico-->
+                                        <Label Text="Endereço Físico:"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="14"
+                                               TextColor="#8E8E8E" />
+                                        <Label Text="{Binding EnderecoCompleto}"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="13"
+                                               TextColor="White"
+                                               Margin="0,0,0,5" />
+                                    </StackLayout>
+                                </Frame>
+                                <!-- COLUNA CRIAR NOVA UNIDADE E SETOR -->
+                                <Frame Grid.Row="1"
+                                       Grid.Column="2"
+                                       Padding="0"
+                                       CornerRadius="3"
+                                       BorderColor="Transparent"
+                                       BackgroundColor="#1F1F1F">
+                                    <StackLayout Margin="20">
+                                        <Label Text="Criar nova Unidade"
+                                               FontFamily="PoppinsSemiBold"
+                                               FontSize="15"
+                                               TextColor="White" />
+                                        <Label Text="Crie uma nova Unidade para essa Empresa"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="11"
+                                               TextColor="#8A8A8A"
+                                               Margin="0,5,0,20" />
+                                        <!-- Button Criar Nova Unidade -->
+                                        <Button Text="Criar Unidade"
+                                                HorizontalOptions="Start"
+                                                cursores:CursorBehavior.Cursor="Hand"
+                                                Clicked="CriarUnidade_Clicked" />
+                                        <Label Margin="0,20,0,0"
+                                               Text="Criar novo Setor"
+                                               FontFamily="PoppinsSemiBold"
+                                               FontSize="15"
+                                               TextColor="White" />
+                                        <Label Text="Crie um novo Setor para a Unidade selecionada atualmente"
+                                               FontFamily="PoppinsRegular"
+                                               FontSize="11"
+                                               TextColor="#8A8A8A"
+                                               Margin="0,5,0,0" />
+                                        <!-- Entrada do nome do novo Setor para a unidade atual-->
+                                        <Entry TextColor="White"
+                                               MaxLength="100"
+                                               Keyboard="Text"
+                                               Placeholder="Insira o nome para o novo setor"
+                                               BackgroundColor="#252525"
+                                               Margin="-3,15,0,20" />
+                                        <!-- Button Criar Novo Setor -->
+                                        <Button Text="Criar Setor"
+                                                HorizontalOptions="Start"
+                                                cursores:CursorBehavior.Cursor="Hand" />
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Frame Button Criar nova empresa -->
+            <Frame Padding="0"
+                   BorderColor="Transparent"
+                   BackgroundColor="#252525"
+                   CornerRadius="3"
+                   Margin="0,20,0,50"
+                   cursores:CursorBehavior.Cursor="Hand">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
+                    <Label Text="&#xe931;"
+                           FontFamily="icons"
+                           FontSize="20"
+                           TextColor="#8A8A8A"
+                           Margin="0,10,10,10"
+                           VerticalTextAlignment="Center" />
+                    <Label Text="Cadastrar uma nova empresa"
+                           FontFamily="PoppinsSemiBold"
+                           FontSize="15"
+                           TextColor="#8A8A8A"
+                           VerticalTextAlignment="Center" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CriarEmpresa_Tapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+        </StackLayout>
+
+
+        <!-- POPUP CRIAR NOVA UNIDADE -->
+        <Grid x:Name="GrdPopupCriarUnidade"
+              IsVisible="False">
+            <BoxView Color="Black"
+                     Opacity="0.7" />
+            <Frame Padding="0"
+                   CornerRadius="2"
+                   BackgroundColor="#252525"
+                   BorderColor="#8E8E8E"
+                   WidthRequest="570"
+                   HeightRequest="420">
+                <StackLayout Margin="20">
+                    <Grid ColumnDefinitions="*,*,*,*"
+                          RowDefinitions="*,*,*,*,*,*,*"
+                          RowSpacing="20"
+                          ColumnSpacing="20">
+                        <StackLayout Grid.Row="0"
+                                     Grid.ColumnSpan="4">
+                            <Label Text="Criar nova Unidade"
+                                   FontSize="18"
+                                   FontFamily="PoppinsSemiBold"
+                                   TextColor="White"
+                                   HorizontalTextAlignment="Start" />
+                            <Label Text="Preencha os campos abaixo para criar uma nova unidade para essa empresa"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="12"
+                                   TextColor="#8A8A8A" />
+                        </StackLayout>
+                        <!-- Button Icon Close Popup -->
+                        <Label Grid.Row="0"
+                               Grid.Column="4"
+                               ClassId="IconUnidade"
+                               Style="{StaticResource PopupIconLabelStyle}"
+                               Text="&#xe900;">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="IconClosePopups_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <!-- Entrada do Nome da Unidade -->
+                        <Entry Grid.Row="1"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Unidade*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="100"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do Logradouro -->
+                        <Entry Grid.Row="1"
+                               Grid.Column="2"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Logradouro*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="100"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do nome do Responsavel -->
+                        <Entry Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Responsável"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="50"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada Numero endereço -->
+                        <Entry Grid.Row="2"
+                               Grid.Column="2"
+                               Placeholder="Numero"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Numeric"
+                               MaxLength="8"
+                               WidthRequest="111"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do CEP -->
+                        <Entry Grid.Row="2"
+                               Grid.Column="3"
+                               Placeholder="CEP*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Telephone"
+                               MaxLength="8"
+                               WidthRequest="111"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do E-Mail da Empresa -->
+                        <Entry Grid.Row="3"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Placeholder="E-Mail"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Email"
+                               MaxLength="200"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do nome Bairro -->
+                        <Entry Grid.Row="3"
+                               Grid.Column="2"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Bairro"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="60"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do Telefone Fixo -->
+                        <Entry Grid.Row="4"
+                               Grid.Column="0"
+                               Placeholder="Telefone Fixo"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Telephone"
+                               MaxLength="16"
+                               WidthRequest="111"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do Celular -->
+                        <Entry Grid.Row="4"
+                               Grid.Column="1"
+                               Placeholder="Celular"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Telephone"
+                               MaxLength="16"
+                               WidthRequest="111"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada nome Cidade -->
+                        <Entry Grid.Row="4"
+                               Grid.Column="2"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Cidade*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="50"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada da da sigla do Estado -->
+                        <Entry Grid.Row="5"
+                               Grid.Column="2"
+                               Placeholder="Estado*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Plain"
+                               MaxLength="2"
+                               TextTransform="Uppercase"
+                               WidthRequest="60"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do Complemento -->
+                        <Entry Grid.Row="5"
+                               Grid.Column="2"
+                               Grid.ColumnSpan="5"
+                               Placeholder="Complemento"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Telephone"
+                               MaxLength="20"
+                               WidthRequest="166"
+                               HorizontalOptions="Start"
+                               Margin="85,0,0,0" />
+                        <!-- Button para Salvar e criar unidade-->
+                        <Button  Grid.Row="6"
+                                 Grid.ColumnSpan="5"
+                                 Text="Salvar"
+                                 Margin="0,0,5,0"
+                                 HorizontalOptions="End"
+                                 cursores:CursorBehavior.Cursor="Hand" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </Grid>
+
+        <!-- POPUP CRIAR NOVA EMPRESA -->
+        <Grid x:Name="GrdPopupCriarEmpresa"
+              IsVisible="False">
+            <BoxView Color="Black"
+                     Opacity="0.7" />
+            <Frame Padding="0"
+                   CornerRadius="2"
+                   BackgroundColor="#252525"
+                   BorderColor="#8E8E8E"
+                   WidthRequest="570"
+                   HeightRequest="490">
+                <StackLayout Margin="20">
+                    <Grid ColumnDefinitions="*,*,*,*"
+                          RowDefinitions="*,*,*,*,*,*,*,*"
+                          RowSpacing="20"
+                          ColumnSpacing="20">
+                        <StackLayout Grid.Row="0"
+                                     Grid.ColumnSpan="4">
+                            <Label Text="Cadastrar nova Empresa"
+                                   FontSize="18"
+                                   FontFamily="PoppinsSemiBold"
+                                   TextColor="White"
+                                   HorizontalTextAlignment="Start" />
+                            <Label Text="Preencha os dados abaixo para criar uma nova empresa, com pelo menos uma unidade"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="12"
+                                   TextColor="#8A8A8A" />
+                        </StackLayout>
+                        <!-- Button Icon Close Popup -->
+                        <Label Grid.Row="0"
+                               Grid.Column="4"
+                               ClassId="IconEmpresa"
+                               Style="{StaticResource PopupIconLabelStyle}"
+                               Text="&#xe900;">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="IconClosePopups_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <!-- Entrada do Nome da Empresa -->
+                        <Entry Grid.Row="1"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Empresa*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="100"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do Logradouro -->
+                        <Entry Grid.Row="1"
+                               Grid.Column="2"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Logradouro*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="100"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do CNPJ -->
+                        <Entry Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Placeholder="CNPJ*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Numeric"
+                               MaxLength="14"
+                               WidthRequest="130"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada Numero endereço -->
+                        <Entry Grid.Row="2"
+                               Grid.Column="2"
+                               Placeholder="Numero"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Numeric"
+                               MaxLength="8"
+                               WidthRequest="111"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do CEP -->
+                        <Entry Grid.Row="2"
+                               Grid.Column="3"
+                               Placeholder="CEP*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Telephone"
+                               MaxLength="8"
+                               WidthRequest="111"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do Nome da Unidade -->
+                        <Entry Grid.Row="3"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Unidade*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="100"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do nome Bairro -->
+                        <Entry Grid.Row="3"
+                               Grid.Column="2"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Bairro"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="60"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do nome do Responsavel -->
+                        <Entry Grid.Row="4"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Responsável"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="50"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada nome Cidade -->
+                        <Entry Grid.Row="4"
+                               Grid.Column="2"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Cidade*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Text"
+                               MaxLength="50"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do E-Mail da Empresa -->
+                        <Entry Grid.Row="5"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Placeholder="E-Mail"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Email"
+                               MaxLength="200"
+                               WidthRequest="250"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada da da sigla do Estado -->
+                        <Entry Grid.Row="5"
+                               Grid.Column="2"
+                               Placeholder="Estado*"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Plain"
+                               MaxLength="2"
+                               TextTransform="Uppercase"
+                               WidthRequest="60"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do Complemento -->
+                        <Entry Grid.Row="5"
+                               Grid.Column="2"
+                               Grid.ColumnSpan="5"
+                               Placeholder="Complemento"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Telephone"
+                               MaxLength="20"
+                               WidthRequest="166"
+                               HorizontalOptions="Start"
+                               Margin="85,0,0,0" />
+                        <!-- Entrada do Telefone Fixo -->
+                        <Entry Grid.Row="6"
+                               Grid.Column="0"
+                               Placeholder="Telefone Fixo"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Telephone"
+                               MaxLength="16"
+                               WidthRequest="111"
+                               HorizontalOptions="Start" />
+                        <!-- Entrada do Celular -->
+                        <Entry Grid.Row="6"
+                               Grid.Column="1"
+                               Placeholder="Celular"
+                               BackgroundColor="#1F1F1F"
+                               Keyboard="Telephone"
+                               MaxLength="16"
+                               WidthRequest="111"
+                               HorizontalOptions="Start" />
+                        <!-- Button para Salvar e criar unidade-->
+                        <Button  Grid.Row="7"
+                                 Grid.ColumnSpan="5"
+                                 Text="Salvar"
+                                 Margin="0,0,5,0"
+                                 HorizontalOptions="End"
+                                 cursores:CursorBehavior.Cursor="Hand" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </Grid>
+
+    </Grid>
+</ContentView>

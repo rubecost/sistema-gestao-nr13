@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cronos.ContentViews.CriarContaContent"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:cursores="clr-namespace:Cronos.Platforms.Windows"
+             xmlns:viewModels="clr-namespace:Cronos.ViewModels">
+
+    <ContentView.BindingContext>
+        <viewModels:PlanosViewModel />
+    </ContentView.BindingContext>
+
+    <ScrollView Orientation="Vertical">
+        <Grid>
+            <VerticalStackLayout Margin="20,20,20,20">
+                <Label VerticalOptions="Start"
+                       HorizontalOptions="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Criar Nova Conta de Usuário&#10;"
+                                  TextColor="White"
+                                  FontSize="18"
+                                  FontFamily="PoppinsBold" />
+                            <Span Text="/ Criar Nova Conta de Usuário"
+                                  TextColor="#8A8A8A"
+                                  FontSize="10"
+                                  FontFamily="PoppinsLight" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Frame Padding="0"
+                       CornerRadius="2"
+                       Margin="0,20,0,20"
+                       BackgroundColor="#252525"
+                       BorderColor="Transparent">
+                    <StackLayout Margin="20">
+                        <Label  Text="Contas de usuários existentes"
+                                TextColor="White"
+                                FontSize="12"
+                                FontFamily="PoppinsSemiBold"
+                                Margin="40,0,0,20" />
+                        <Grid ColumnSpacing="20"
+                              RowSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <!-- Icon excluir usuário-->
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="&#xe92e;"
+                                   TextColor="White"
+                                   FontFamily="icons"
+                                   FontSize="15"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Start"
+                                   cursores:CursorBehavior.Cursor="Hand" />
+                            <Label  Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="Nome"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="0"
+                                    Grid.Column="2"
+                                    Text="E-Mail"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="0"
+                                    Grid.Column="3"
+                                    Text="Unidade"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="0"
+                                    Grid.Column="4"
+                                    Text="Setor"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="0"
+                                    Grid.Column="5"
+                                    Text="Data Criação"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="0"
+                                    Grid.Column="6"
+                                    Text="Tipo de Plano"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <!-- Icon salvar atualizações-->
+                            <Label Grid.Row="1"
+                                   Grid.Column="7"
+                                   Text="&#xe92d;"
+                                   TextColor="White"
+                                   FontFamily="icons"
+                                   FontSize="15"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Start"
+                                   cursores:CursorBehavior.Cursor="Hand" />
+
+                            <Label  Grid.Row="2"
+                                    Grid.ColumnSpan="8"
+                                    Text="Criar nova conta de usuário"
+                                    TextColor="White"
+                                    FontSize="12"
+                                    FontFamily="PoppinsSemiBold"
+                                    Margin="40,0,0,10" />
+
+                            <Label  Grid.Row="3"
+                                    Grid.Column="1"
+                                    Text="Tipo de Plano:"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="3"
+                                    Grid.Column="2"
+                                    Text="Unidade:"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="3"
+                                    Grid.Column="3"
+                                    Text="Setor:"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="3"
+                                    Grid.Column="4"
+                                    Text="Nome:"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="3"
+                                    Grid.Column="5"
+                                    Text="E-Mail:"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <Label  Grid.Row="3"
+                                    Grid.Column="6"
+                                    Text="Senha:"
+                                    TextColor="#8A8A8A"
+                                    FontSize="10"
+                                    FontFamily="PoppinsLight" />
+                            <!-- Accordion Planos-->
+                            <Frame Grid.Row="4"
+                                   Grid.Column="1"
+                                   Padding="0,-5,0,-5"
+                                   CornerRadius="5"
+                                   VerticalOptions="Start"
+                                   BackgroundColor="#1F1F1F"
+                                   BorderColor="Transparent">
+                                <toolkit:Expander IsExpanded="{Binding ExpandAccordPlanos}">
+                                    <toolkit:Expander.Header>
+                                        <StackLayout>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="0" />
+                                                </Grid.ColumnDefinitions>
+                                                <Entry Grid.Column="0"
+                                                       x:Name="EtyAccordionPlanos"
+                                                       Text="{Binding SelectedPlan.Nome}"
+                                                       FontSize="10"
+                                                       FontFamily="PoppinsRegular"
+                                                       IsEnabled="False"
+                                                       MaxLength="19"
+                                                       TextColor="White"
+                                                       PlaceholderColor="White"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"
+                                                       cursores:CursorBehavior.Cursor="Hand" />
+                                                <Label Grid.ColumnSpan="2"
+                                                       Text="&#xe912;"
+                                                       FontSize="10"
+                                                       Padding="0,0,7,0"
+                                                       FontFamily="icons"
+                                                       TextColor="White"
+                                                       HorizontalTextAlignment="End"
+                                                       VerticalTextAlignment="Center"
+                                                       cursores:CursorBehavior.Cursor="Hand" />
+                                            </Grid>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding LoadPlansCommand}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                    </toolkit:Expander.Header>
+
+                                    <StackLayout Margin="10,0,10,10">
+                                        <CollectionView ItemsSource="{Binding Plans}"
+                                                        SelectionMode="Single">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Text="{Binding Name}"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Start"
+                                                           FontSize="10"
+                                                           Padding="0,0,0,10"
+                                                           FontFamily="PoppinsRegular"
+                                                           TextColor="White"
+                                                           cursores:CursorBehavior.Cursor="Hand">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PlanosViewModel}}, Path=SelectPlanCommand}"
+                                                                                  CommandParameter="{Binding .}" />
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </StackLayout>
+                                </toolkit:Expander>
+                            </Frame>
+
+                            <!-- Accordion Unidades -->
+                            <Frame Grid.Row="4"
+                                   Grid.Column="2"
+                                   Padding="0,-5,0,-5"
+                                   CornerRadius="0"
+                                   VerticalOptions="Start"
+                                   BackgroundColor="#1F1F1F"
+                                   BorderColor="Transparent">
+                                <toolkit:Expander IsExpanded="{Binding ExpandAccordPlanos}">
+                                    <toolkit:Expander.Header>
+                                        <StackLayout>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="0" />
+                                                </Grid.ColumnDefinitions>
+                                                <Entry Grid.Column="0"
+                                                       Text="{Binding SelectedPlan.Nome}"
+                                                       FontSize="10"
+                                                       FontFamily="PoppinsRegular"
+                                                       IsEnabled="False"
+                                                       MaxLength="19"
+                                                       TextColor="White"
+                                                       PlaceholderColor="White"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"
+                                                       cursores:CursorBehavior.Cursor="Hand" />
+                                                <Label Grid.ColumnSpan="2"
+                                                       Text="&#xe912;"
+                                                       FontSize="10"
+                                                       Padding="0,0,7,0"
+                                                       FontFamily="icons"
+                                                       TextColor="White"
+                                                       HorizontalTextAlignment="End"
+                                                       VerticalTextAlignment="Center"
+                                                       cursores:CursorBehavior.Cursor="Hand" />
+                                            </Grid>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding LoadPlansCommand}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                    </toolkit:Expander.Header>
+
+                                    <StackLayout Margin="10,0,10,10">
+                                        <CollectionView ItemsSource="{Binding Plans}"
+                                                        SelectionMode="Single">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Text="{Binding Name}"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Start"
+                                                           FontSize="10"
+                                                           Padding="0,0,0,10"
+                                                           FontFamily="PoppinsRegular"
+                                                           TextColor="White"
+                                                           cursores:CursorBehavior.Cursor="Hand">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PlanosViewModel}}, Path=SelectPlanCommand}"
+                                                                                  CommandParameter="{Binding .}" />
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </StackLayout>
+                                </toolkit:Expander>
+                            </Frame>
+
+                            <!-- Accordion Setores -->
+                            <Frame Grid.Row="4"
+                                   Grid.Column="3"
+                                   Padding="0,-5,0,-5"
+                                   CornerRadius="5"
+                                   VerticalOptions="Start"
+                                   BackgroundColor="#1F1F1F"
+                                   BorderColor="Transparent">
+                                <toolkit:Expander IsExpanded="{Binding ExpandAccordPlanos}">
+                                    <toolkit:Expander.Header>
+                                        <StackLayout>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="0" />
+                                                </Grid.ColumnDefinitions>
+                                                <Entry Grid.Column="0"
+                                                       Text="{Binding SelectedPlan.Nome}"
+                                                       FontSize="10"
+                                                       FontFamily="PoppinsRegular"
+                                                       IsEnabled="False"
+                                                       MaxLength="19"
+                                                       TextColor="White"
+                                                       PlaceholderColor="White"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"
+                                                       cursores:CursorBehavior.Cursor="Hand" />
+                                                <Label Grid.ColumnSpan="2"
+                                                       Text="&#xe912;"
+                                                       FontSize="10"
+                                                       Padding="0,0,7,0"
+                                                       FontFamily="icons"
+                                                       TextColor="White"
+                                                       HorizontalTextAlignment="End"
+                                                       VerticalTextAlignment="Center"
+                                                       cursores:CursorBehavior.Cursor="Hand" />
+                                            </Grid>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding LoadPlansCommand}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                    </toolkit:Expander.Header>
+
+                                    <StackLayout Margin="10,0,10,10">
+                                        <CollectionView ItemsSource="{Binding Plans}"
+                                                        SelectionMode="Single">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Text="{Binding Name}"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Start"
+                                                           FontSize="10"
+                                                           Padding="0,0,0,10"
+                                                           FontFamily="PoppinsRegular"
+                                                           TextColor="White"
+                                                           cursores:CursorBehavior.Cursor="Hand">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PlanosViewModel}}, Path=SelectPlanCommand}"
+                                                                                  CommandParameter="{Binding .}" />
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </StackLayout>
+                                </toolkit:Expander>
+                            </Frame>
+
+                            <!-- Entrada Nome Usuário -->
+                            <Frame Grid.Row="4"
+                                   Grid.Column="4"
+                                   CornerRadius="5"
+                                   Padding="-5"
+                                   BackgroundColor="#1F1F1F"
+                                   BorderColor="Transparent"
+                                   VerticalOptions="Start">
+                                <Entry TextColor="White"
+                                       FontSize="11"
+                                       Margin="5,0,5,0"
+                                       MaxLength="48"
+                                       Keyboard="Plain"
+                                       FontFamily="PoppinsLight">
+
+                                </Entry>
+                            </Frame>
+
+                            <!-- Entrada E-mail -->
+                            <Frame Grid.Row="4"
+                                   Grid.Column="5"
+                                   CornerRadius="5"
+                                   Padding="-5"
+                                   BackgroundColor="#1F1F1F"
+                                   BorderColor="Transparent"
+                                   VerticalOptions="Start">
+                                <Entry TextColor="White"
+                                       FontSize="11"
+                                       Margin="5,0,5,0"
+                                       MaxLength="197"
+                                       Keyboard="Email"
+                                       FontFamily="PoppinsLight">
+
+                                </Entry>
+                            </Frame>
+
+                            <!-- Entrada Senha -->
+                            <Frame Grid.Row="4"
+                                   Grid.Column="6"
+                                   CornerRadius="5"
+                                   Padding="-5"
+                                   BackgroundColor="#1F1F1F"
+                                   BorderColor="Transparent"
+                                   VerticalOptions="Start">
+                                <Entry TextColor="White"
+                                       FontSize="11"
+                                       Margin="5,0,5,0"
+                                       MaxLength="17"
+                                       Keyboard="Plain"
+                                       IsPassword="True"
+                                       FontFamily="PoppinsLight">
+
+                                </Entry>
+                            </Frame>
+
+                            <!-- Icon salvar atualizações-->
+                            <Label Grid.Row="4"
+                                   Grid.Column="7"
+                                   Text="&#xe92d;"
+                                   TextColor="White"
+                                   FontFamily="icons"
+                                   FontSize="15"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center"
+                                   cursores:CursorBehavior.Cursor="Hand" />
+
+
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentView>

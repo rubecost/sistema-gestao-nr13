@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cursores="clr-namespace:Cronos.Platforms.Windows"
+             xmlns:viewmodel="clr-namespace:Cronos.ViewModels"
+             x:Class="Cronos.Views.MainPage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Frame Padding="0"
+           CornerRadius="0"
+           BackgroundColor="Transparent"
+           BorderColor="#4B4B4B">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!-- MENU LATERAL ESQUERDO -->
+            <!-- Logo esquerdo -->
+            <Image Grid.Column="0"
+                   Source="icon_idealle.png"
+                   Aspect="AspectFit"
+                   Margin="0,20,0,0"
+                   MaximumWidthRequest="60"
+                   MaximumHeightRequest="60"
+                   VerticalOptions="Start" />
+            <Frame Grid.Column="0"
+                   Padding="0"
+                   CornerRadius="0"
+                   Margin="-1,-1,0,-1"
+                   BackgroundColor="Transparent"
+                   BorderColor="#4B4B4B"
+                   ZIndex="2">
+                <StackLayout VerticalOptions="Center"
+                             Margin="0,117,0,0">
+                    <!-- Button DashBoard -->
+                    <Grid Style="{StaticResource BtnMenuLatGrid}">
+                        <BoxView Style="{StaticResource BtnMenuLatBoxViewLinha}"
+                                 IsVisible="True"
+                                 x:Name="Bxvlinha1" />
+                        <Label ClassId="BtnPage1"
+                               x:Name="TxtIcon1"
+                               Text="&#xe901;"
+                               TextColor="White"
+                               Style="{StaticResource BtnMenuLatLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <!-- Button Equipamentos -->
+                    <Grid Style="{StaticResource BtnMenuLatGrid}">
+                        <BoxView Style="{StaticResource BtnMenuLatBoxViewLinha}"
+                                 IsVisible="False"
+                                 x:Name="Bxvlinha2" />
+                        <Label ClassId="BtnPage2"
+                               x:Name="TxtIcon2"
+                               Text="&#xe902;"
+                               Style="{StaticResource  BtnMenuLatLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <!-- Button Registrar Informações sobre o equipamento -->
+                    <Grid Style="{StaticResource BtnMenuLatGrid}">
+                        <BoxView Style="{StaticResource BtnMenuLatBoxViewLinha}"
+                                 IsVisible="False"
+                                 x:Name="Bxvlinha3" />
+                        <Label ClassId="BtnPage3"
+                               x:Name="TxtIcon3"
+                               Text="&#xe903;"
+                               Style="{StaticResource  BtnMenuLatLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <!-- Button Registro Histórico -->
+                    <Grid Style="{StaticResource BtnMenuLatGrid}">
+                        <BoxView Style="{StaticResource BtnMenuLatBoxViewLinha}"
+                                 IsVisible="False"
+                                 x:Name="Bxvlinha4" />
+                        <Label ClassId="BtnPage4"
+                               x:Name="TxtIcon4"
+                               Text="&#xe904;"
+                               Style="{StaticResource  BtnMenuLatLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <!-- Button Criar nova conta de usuário -->
+                    <Grid Style="{StaticResource BtnMenuLatGrid}">
+                        <BoxView Style="{StaticResource BtnMenuLatBoxViewLinha}"
+                                 IsVisible="False"
+                                 x:Name="Bxvlinha5" />
+                        <Label ClassId="BtnPage5"
+                               x:Name="TxtIcon5"
+                               Text="&#xe905;"
+                               Style="{StaticResource  BtnMenuLatLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <!-- Button Empresas cadastradas -->
+                    <Grid Style="{StaticResource BtnMenuLatGrid}">
+                        <BoxView Style="{StaticResource BtnMenuLatBoxViewLinha}"
+                                 IsVisible="False"
+                                 x:Name="Bxvlinha6" />
+                        <Label ClassId="BtnPage6"
+                               x:Name="TxtIcon6"
+                               Text="&#xe906;"
+                               Style="{StaticResource  BtnMenuLatLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <!-- Button Configurações -->
+                    <Grid Margin="0,100,0,10"
+                          Style="{StaticResource BtnMenuLatGrid}">
+                        <BoxView Style="{StaticResource BtnMenuLatBoxViewLinha}"
+                                 IsVisible="False"
+                                 x:Name="Bxvlinha7" />
+                        <Label ClassId="BtnPage7"
+                               x:Name="TxtIcon7"
+                               Text="&#xe907;"
+                               Style="{StaticResource  BtnMenuLatLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <!-- Button Sobre/Ajuda -->
+                    <Grid Style="{StaticResource BtnMenuLatGrid}">
+                        <BoxView Style="{StaticResource BtnMenuLatBoxViewLinha}"
+                                 IsVisible="False"
+                                 x:Name="Bxvlinha8" />
+                        <Label ClassId="BtnPage8"
+                               x:Name="TxtIcon8"
+                               Text="&#xe908;"
+                               Style="{StaticResource  BtnMenuLatLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <!-- MENU SUPERIOR -->
+            <Grid Grid.Column="1"
+                  RowDefinitions="auto,*">
+                <Frame Grid.Row="0"
+                       Padding="0"
+                       CornerRadius="0"
+                       HeightRequest="100"
+                       BackgroundColor="#252525"
+                       BorderColor="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <!-- Logo menu superior -->
+                        <Image Grid.Column="0"
+                               Source="logo_idealle.png"
+                               MaximumHeightRequest="60"
+                               Aspect="AspectFit"
+                               Margin="30,0,0,0"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center" />
+                        <StackLayout Grid.Column="1"
+                                     Orientation="Horizontal"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="Center"
+                                     Margin="0,0,30,0">
+                            <Grid cursores:CursorBehavior.Cursor="Hand">
+                                <!-- Sino notificações -->
+                                <Label Text="&#xe932;"
+                                       FontSize="25"
+                                       FontFamily="icons"
+                                       TextColor="#8A8A8A"
+                                       Margin="0,5,0,0"
+                                       VerticalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <!-- Alerta do sino -->
+                                <Path IsVisible="True"
+                                      Fill="#EB9C25"
+                                      Stroke="#252525"
+                                      Margin="10,0,0,5">
+                                    <Path.Data>
+                                        <EllipseGeometry Center="10,7"
+                                                         RadiusX="5"
+                                                         RadiusY="5" />
+                                    </Path.Data>
+                                </Path>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Btn_TogglePopupNotificacao}" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                            <VerticalStackLayout Margin="20,0,10,0">
+                                <!-- Nome do usuário -->
+                                <Label Text="Anna Katrina Marchesi"
+                                       FontSize="11"
+                                       FontFamily="PoppinsSemiBold"
+                                       TextColor="White"
+                                       Margin="0,0,0,-2"
+                                       HorizontalTextAlignment="End" />
+                                <!-- E-mail do usuário -->
+                                <Label Text="hello@reallygreatsite.com"
+                                       FontSize="9"
+                                       FontFamily="PoppinsLight"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="End" />
+                            </VerticalStackLayout>
+                            <Frame CornerRadius="2"
+                                   HeightRequest="30"
+                                   WidthRequest="30"
+                                   Padding="0"
+                                   BorderColor="#8E8E8E"
+                                   BackgroundColor="#8E8E8E"
+                                   IsClippedToBounds="True"
+                                   cursores:CursorBehavior.Cursor="Hand">
+                                <Grid>
+                                    <Label Text="&#xe93a;"
+                                           FontSize="20"
+                                           FontFamily="icons"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"/>
+                                    <!-- Imagem avatar do usuário -->
+                                    <Image Source="{Binding .}"
+                                           Aspect="AspectFill">
+                                    </Image>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Btn_AbrirPages}"
+                                                          CommandParameter="BtnPage7"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- CONTEUDO PAGINAS FILHAS -->
+                <ScrollView Grid.Row="1" >
+                    <ContentPresenter x:Name="ContentArea" />
+                </ScrollView>
+                <!-- POPUP NOTIFICAÇÕES -->
+                <Frame Grid.Row="1"
+                       IsVisible="{Binding PopupNotificacaoVisivel}"
+                       BackgroundColor="White"
+                       BorderColor="#4B4B4B"
+                       VerticalOptions="Start"
+                       HorizontalOptions="End"
+                       Margin="0,0,130,0"
+                       WidthRequest="200"
+                       HeightRequest="200"
+                       HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0">
+                    <Grid Margin="20,15,10,20">
+                        <Label Text="Notificações"
+                               FontSize="14"
+                               TextColor="#1F1F1F"
+                               FontFamily="PoppinsSemiBold" />
+                        <ScrollView Margin="0,25,0,20">
+                            <StackLayout Margin="0,0,20,10">
+                                <!-- Mensagens de texto das Notificações -->
+                                <CollectionView ItemsSource="{Binding Notificacoes}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout>
+                                                <Label Text="{Binding .}"
+                                                       Margin="0,2"
+                                                       LineHeight="1"
+                                                       FontSize="11"
+                                                       FontFamily="PoppinsRegular"
+                                                       TextColor="#1F1F1F"
+                                                       HorizontalTextAlignment="Start" />
+                                                <BoxView WidthRequest="60"
+                                                         HeightRequest="2"
+                                                         Color="#1F1F1F"
+                                                         Opacity="0.1"
+                                                         Margin="0,5,0,5"
+                                                         CornerRadius="20"
+                                                         HorizontalOptions="Start" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </ScrollView>
+                        <!-- Button Ver todas Notificações -->
+                        <Label ClassId="BtnPage9"
+                               VerticalOptions="End"
+                               HorizontalOptions="Start"
+                               cursores:CursorBehavior.Cursor="Hand">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Ver Todas "
+                                          FontSize="11"
+                                          FontFamily="PoppinsBold"
+                                          TextColor="#1F1F1F" />
+                                    <Span Text="&#xe90a;"
+                                          FontSize="10"
+                                          FontAttributes="Bold"
+                                          FontFamily="icons"
+                                          TextColor="#1F1F1F" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AbrirPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Frame>
+            </Grid>
+            
+            <!-- LOADING DA PAGINA -->
+            <Grid Grid.Column="1"
+                  IsVisible="false"
+                  Margin="0,98,0,0"
+                  x:Name="GridLoading">
+                <BoxView Color="#252525" />
+                <Image x:Name="ImgLoading"
+                       Opacity="0"
+                       Source="loading_cronos.png"
+                       WidthRequest="100"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Grid>
+        </Grid>
+    </Frame>
+</ContentPage>

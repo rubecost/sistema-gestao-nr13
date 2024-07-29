@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cronos.ContentViews.RegistrarInfoEquipamentoContent"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:Cronos.ViewModels"
+             xmlns:services="clr-namespace:Cronos.Services"
+             xmlns:wds="clr-namespace:Cronos.Platforms.Windows">
+
+    <ContentView.BindingContext>
+        <viewmodels:RegistrarInfoEqpViewModel />
+    </ContentView.BindingContext>
+    <StackLayout Margin="20">
+        <Label Text="Registrar Informações Sobre o Equipamento"
+               FontSize="18"
+               FontFamily="PoppinsSemiBold"
+               TextColor="White"
+               HorizontalTextAlignment="Start"
+               SemanticProperties.HeadingLevel="Level1" />
+        <Label Text="Registrar Informações Sobre o Equipamento "
+               FontSize="9"
+               TextColor="#8A8A8A"
+               FontFamily="PoppinsLight"
+               HorizontalTextAlignment="Start" />
+        <Frame BackgroundColor="#252525"
+               Padding="0"
+               BorderColor="Transparent"
+               CornerRadius="2"
+               Margin="0,10,0,0">
+            <StackLayout Margin="20">
+                <Grid ColumnDefinitions="*,*,*,*"
+                      RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+                      ColumnSpacing="20"
+                      RowSpacing="20">
+                    <Label Grid.Row="0"
+                           Grid.ColumnSpan="3"
+                           Text="TIPO DE EDIÇÃO"
+                           FontFamily="PoppinsRegular"
+                           FontSize="13"
+                           TextColor="White" />
+                    <!-- Radio Buttons tipo de edição -->
+                    <StackLayout Grid.Row="1"
+                                 Grid.ColumnSpan="4"
+                                 Orientation="Horizontal"
+                                 HorizontalOptions="Start"
+                                 RadioButtonGroup.GroupName="GrpTipoEdicao">
+                        <!-- Inserir novas informações -->
+                        <RadioButton Content="INSERIR NOVAS INFORMAÇÕES"
+                                     FontFamily="PoppinsRegular"
+                                     FontSize="12"
+                                     TextColor="White"
+                                     Margin="0,0,20,0"
+                                     IsChecked="True"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Start"
+                                     wds:CursorBehavior.Cursor="Hand" />
+                        <!-- Corrigir informações existentes -->
+                        <RadioButton Content="CORRIGIR INFORMAÇÕES EXISTENTES"
+                                     FontFamily="PoppinsRegular"
+                                     FontSize="12"
+                                     TextColor="White"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Start"
+                                     wds:CursorBehavior.Cursor="Hand" />
+                    </StackLayout>
+                    <Label Grid.Row="2"
+                           Grid.ColumnSpan="4"
+                           Text="LOCAL"
+                           FontFamily="PoppinsRegular"
+                           FontSize="13"
+                           TextColor="White" />
+                    <Grid Grid.Row="3"
+                          Grid.ColumnSpan="4"
+                          ColumnSpacing="20"
+                          ColumnDefinitions="*,*,*,*,*">
+                        <StackLayout Grid.Row="0"
+                                     Grid.ColumnSpan="2">
+                            <Label Text="NOME DA EMPRESA"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="12"
+                                   TextColor="#8A8A8A"
+                                   Margin="0,0,0,5" />
+                            <Frame Grid.Column="0"
+                                   Padding="10,7,10,7"
+                                   CornerRadius="3"
+                                   HeightRequest="37"
+                                   BorderColor="Transparent"
+                                   BackgroundColor="#1F1F1F">
+                                <!-- Nome da Empresa atual aqui -->
+                                <Label FontSize="12"
+                                       TextColor="White"
+                                       HeightRequest="20"
+                                       FontFamily="PoppinsLight"
+                                       BackgroundColor="#1F1F1F"
+                                       Text="Nome da empresa padrão não altera aqui" />
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Grid.Row="0"
+                                     Grid.Column="2"
+                                     Grid.ColumnSpan="2">
+                            <Label Text="NOME DA UNIDADE"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="12"
+                                   TextColor="#8A8A8A"
+                                   Margin="0,0,0,5" />
+                            <Frame Grid.Column="0"
+                                   Padding="10,7,10,7"
+                                   CornerRadius="3"
+                                   HeightRequest="37"
+                                   BorderColor="Transparent"
+                                   BackgroundColor="#1F1F1F">
+                                <!-- Nome da Unidade atual aqui -->
+                                <Label FontSize="12"
+                                       TextColor="White"
+                                       HeightRequest="20"
+                                       FontFamily="PoppinsLight"
+                                       BackgroundColor="#1F1F1F"
+                                       Text="Nome da unidade selecionada atualmente aqui" />
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Grid.Row="0"
+                                     Grid.Column="5">
+                            <Grid ColumnDefinitions="*,70">
+                                <Label Grid.Column="0"
+                                       Text="NOME DO SETOR"
+                                       FontFamily="PoppinsRegular"
+                                       FontSize="12"
+                                       TextColor="#8A8A8A"
+                                       Margin="0,0,0,5" />
+                                <!-- Button Criar novo Setor -->
+                                <Label Grid.Column="1"
+                                       Text="Criar Novo"
+                                       FontFamily="PoppinsRegular"
+                                       FontSize="12"
+                                       TextColor="White"
+                                       HorizontalOptions="End"
+                                       wds:CursorBehavior.Cursor="Hand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                            <!-- Accordion Setores Existentes -->
+                            <Frame Padding="0"
+                                   VerticalOptions="Start"
+                                   BackgroundColor="#1F1F1F"
+                                   BorderColor="Transparent"
+                                   CornerRadius="3">
+                                <toolkit:Expander IsExpanded="{Binding ExpandAccordSetores}">
+                                    <toolkit:Expander.Header>
+                                        <StackLayout>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="0" />
+                                                </Grid.ColumnDefinitions>
+                                                <Entry Grid.Column="0"
+                                                       Text="{Binding SelectedSetor.Nome}"
+                                                       IsEnabled="False"
+                                                       MaxLength="19"
+                                                       PlaceholderColor="White"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"
+                                                       wds:CursorBehavior.Cursor="Hand" />
+                                                <Label Grid.ColumnSpan="2"
+                                                       Text="&#xe912;"
+                                                       FontSize="10"
+                                                       Padding="0,0,7,0"
+                                                       FontFamily="icons"
+                                                       TextColor="White"
+                                                       HorizontalTextAlignment="End"
+                                                       VerticalTextAlignment="Center"
+                                                       wds:CursorBehavior.Cursor="Hand" />
+                                            </Grid>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding SelectSetorCommand}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                    </toolkit:Expander.Header>
+                                    <StackLayout Margin="10,0,10,0">
+                                        <CollectionView ItemsSource="{Binding Setores}"
+                                                        SelectionMode="Single">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Text="{Binding Nome}"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Start"
+                                                           FontSize="11"
+                                                           Padding="0,5,0,5"
+                                                           FontFamily="PoppinsRegular"
+                                                           TextColor="White"
+                                                           wds:CursorBehavior.Cursor="Hand">
+                                                        <!--<Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:RegistrarInfoEqpViewModel}}, Path=SetorSelecionadoCommand}"
+                                                                                  CommandParameter="{Binding .}" />
+                                                        </Label.GestureRecognizers>-->
+                                                    </Label>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </StackLayout>
+                                </toolkit:Expander>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+
+                    <Label Grid.Row="4"
+                           Grid.ColumnSpan="4"
+                           Text="IDENTIFICAÇÃO"
+                           FontFamily="PoppinsRegular"
+                           FontSize="13"
+                           TextColor="White" />
+                    <StackLayout Grid.Row="5"
+                                 Grid.Column="0">
+                        <Label Text="TAG*"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da TAG de identificação do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="200"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="5"
+                                 Grid.Column="1">
+                        <Label Text="LOCALIZAÇÃO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da Localização do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="100"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="5"
+                                 Grid.Column="2">
+                        <Label Text="SERVIÇO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada do Serviço no equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="100"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="5"
+                                 Grid.Column="3">
+                        <Label Text="NÚMERO DE FABRICAÇÃO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada do Número de fabricação do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="6"
+                                 Grid.ColumnSpan="4">
+                        <Label Text="SITUAÇÃO DO EQUIPAMENTO*"
+                               FontFamily="PoppinsRegular"
+                               FontSize="13"
+                               TextColor="White" />
+                        <Label Text="Qual das seguintes situações melhor descreve esse equipamento"
+                               FontFamily="PoppinsRegular"
+                               FontSize="11"
+                               TextColor="#8A8A8A" />
+                        <!-- Radio Buttons situação do equipamento -->
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Start"
+                                     Margin="0,20,0,0"
+                                     RadioButtonGroup.GroupName="GrpSituacaoEq">
+                            <!-- Equipamento Ativo -->
+                            <RadioButton Content="ATIVO"
+                                         FontFamily="PoppinsRegular"
+                                         FontSize="12"
+                                         TextColor="White"
+                                         IsChecked="True"
+                                         VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         wds:CursorBehavior.Cursor="Hand" />
+                            <!-- Equipamento Desativado -->
+                            <RadioButton Content="DESATIVADO"
+                                         FontFamily="PoppinsRegular"
+                                         FontSize="12"
+                                         TextColor="White"
+                                         Margin="20,0,20,0"
+                                         VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         wds:CursorBehavior.Cursor="Hand" />
+                            <!-- Equipamento Nr-13 não obrigatório -->
+                            <RadioButton Content="NR-13 NÃO OBRIGATÓRIO"
+                                         FontFamily="PoppinsRegular"
+                                         FontSize="12"
+                                         TextColor="White"
+                                         VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         wds:CursorBehavior.Cursor="Hand" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Label Grid.Row="7"
+                           Grid.ColumnSpan="4"
+                           Text="PROJETO"
+                           FontFamily="PoppinsRegular"
+                           FontSize="13"
+                           TextColor="White" />
+                    <StackLayout Grid.Row="8"
+                                 Grid.Column="0">
+                        <Label Text="VOLUME (m³)"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada do VOLUME (m³) do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="8"
+                                 Grid.Column="1">
+                        <Label Text="PMTA"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada do PMTA do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="8"
+                                 Grid.Column="2">
+                        <Label Text="PRESSÃO TESTE HIDROSÁTICO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da PRESSÃO TESTE HIDROSÁTICO do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+
+                    <Label Grid.Row="9"
+                           Grid.ColumnSpan="4"
+                           Text="OPERAÇÃO"
+                           FontFamily="PoppinsRegular"
+                           FontSize="13"
+                           TextColor="White" />
+                    <StackLayout Grid.Row="10"
+                                 Grid.Column="0">
+                        <Label Text="FLUIDO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada do FLUIDO do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="10"
+                                 Grid.Column="1">
+                        <Label Text="PRESSÃO MÁXIMA"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da PRESSÃO MÁXIMA do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="11"
+                                 Grid.ColumnSpan="4">
+                        <Label Text="Instrumentos de Segurança"
+                               FontFamily="PoppinsSemiBold"
+                               FontSize="15"
+                               TextColor="White"
+                               Margin="0,20,0,20" />
+                        <Label Text="INDICADOR(ES) DE PRESSÃO ASSOCIADO(S)"
+                               FontFamily="PoppinsRegular"
+                               FontSize="13"
+                               TextColor="White" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="12"
+                                 Grid.Column="0">
+                        <Label Text="TAG DE IDENTIFICAÇÃO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da TAG DE IDENTIFICAÇÃO do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="12"
+                                 Grid.Column="1">
+                        <Label Text="ÚLTIMA CALIBRAÇÃO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da ÚLTIMA CALIBRAÇÃO do equipamento -->
+                        <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                   Keyboard="Numeric"
+                                                   FontSize="12"
+                                                   TextColor="White"
+                                                   PlaceholderColor="#8A8A8A"
+                                                   MaxLength="50"
+                                                   HeightRequest="35"
+                                                   FontFamily="PoppinsLight"
+                                                   BackgroundColor="#1F1F1F">
+                            <Entry.Behaviors>
+                                <wds:DateEntryBehavior />
+                            </Entry.Behaviors>
+                        </services:DateEntryService>
+                    </StackLayout>
+                    <StackLayout Grid.Row="12"
+                                 Grid.Column="2">
+                        <Label Text="NÚMERO CERTIFICADO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada do NÚMERO CERTIFICADO do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+
+                    <Label Grid.Row="13"
+                           Grid.ColumnSpan="4"
+                           Text="VÁLVULA(S) DE SEGURANÇA / ALÍVIO"
+                           FontFamily="PoppinsRegular"
+                           FontSize="13"
+                           TextColor="White" />
+                    <StackLayout Grid.Row="14"
+                                 Grid.Column="0">
+                        <Label Text="TAG DE IDENTIFICAÇÃO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada VÁLVULA(S) DE SEGURANÇA / ALÍVIO do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="14"
+                                 Grid.Column="1">
+                        <Label Text="PRESSÃO ABERTURA"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada DE PRESSÃO ABERTURA do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="14"
+                                 Grid.Column="2">
+                        <Label Text="BITOLA (Ø)"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada DE BITOLA (Ø) do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="14"
+                                 Grid.Column="3">
+                        <Label Text="DCBI"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada DE DCBI do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="15"
+                                 Grid.Column="0">
+                        <Label Text="ÚLTIMA CALIBRAÇÃO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da ÚLTIMA CALIBRAÇÃO do equipamento -->
+                        <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                   Keyboard="Numeric"
+                                                   FontSize="12"
+                                                   TextColor="White"
+                                                   PlaceholderColor="#8A8A8A"
+                                                   MaxLength="50"
+                                                   HeightRequest="35"
+                                                   FontFamily="PoppinsLight"
+                                                   BackgroundColor="#1F1F1F">
+                            <Entry.Behaviors>
+                                <wds:DateEntryBehavior />
+                            </Entry.Behaviors>
+                        </services:DateEntryService>
+                    </StackLayout>
+                    <StackLayout Grid.Row="15"
+                                 Grid.Column="1">
+                        <Label Text="NÚMERO CERTIFICADO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada NÚMERO CERTIFICADO do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+
+                    <Label Grid.Row="16"
+                           Grid.ColumnSpan="4"
+                           Text="Classificação NR-13"
+                           FontFamily="PoppinsSemiBold"
+                           FontSize="15"
+                           TextColor="White"
+                           Margin="0,20,0,0" />
+
+                    <StackLayout Grid.Row="17"
+                                 Grid.Column="0">
+                        <Label Text="CLASSE DE FLUIDO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada CLASSE DE FLUIDO do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="17"
+                                 Grid.Column="1">
+                        <Label Text="GRUPO POTENCIAL DE RISCO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada GRUPO POTENCIAL DE RISCO do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="17"
+                                 Grid.Column="2">
+                        <Label Text="CATEGORIA"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada CATEGORIA do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="18"
+                                 Grid.ColumnSpan="4">
+                        <Label Text="Programação de Inspeções NR-13"
+                               FontFamily="PoppinsSemiBold"
+                               FontSize="15"
+                               TextColor="White"
+                               Margin="0,20,0,20" />
+                        <Label Grid.Row="2"
+                               Grid.ColumnSpan="4"
+                               Text="ÚLTIMA INSPEÇÃO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="13"
+                               TextColor="White" />
+                    </StackLayout>
+
+                    <Grid Grid.Row="19"
+                          Grid.ColumnSpan="4"
+                          ColumnSpacing="20"
+                          ColumnDefinitions="*,*,*,*,*">
+
+                        <StackLayout Grid.Column="0">
+                            <Label Text="NÚMERO DOCUMENTO"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="12"
+                                   TextColor="#8A8A8A"
+                                   Margin="0,0,0,5" />
+                            <!-- Entrada NÚMERO DOCUMENTO INSPEÇÃO do equipamento -->
+                            <Entry TextColor="White"
+                                   MaxLength="50"
+                                   Keyboard="Text"
+                                   BackgroundColor="#1F1F1F"
+                                   Margin="0" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="ÚLTIMA EXTERNA"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="12"
+                                   TextColor="#8A8A8A"
+                                   Margin="0,0,0,5" />
+                            <!-- Entrada da ÚLTIMA EXTERNA do equipamento -->
+                            <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                       Keyboard="Numeric"
+                                                       FontSize="12"
+                                                       TextColor="White"
+                                                       PlaceholderColor="#8A8A8A"
+                                                       MaxLength="50"
+                                                       HeightRequest="35"
+                                                       FontFamily="PoppinsLight"
+                                                       BackgroundColor="#1F1F1F">
+                                <Entry.Behaviors>
+                                    <wds:DateEntryBehavior />
+                                </Entry.Behaviors>
+                            </services:DateEntryService>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2">
+                            <Label Text="ÚLTIMA INTERNA"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="12"
+                                   TextColor="#8A8A8A"
+                                   Margin="0,0,0,5" />
+                            <!-- Entrada da ÚLTIMA INTERNA do equipamento -->
+                            <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                       Keyboard="Numeric"
+                                                       FontSize="12"
+                                                       TextColor="White"
+                                                       PlaceholderColor="#8A8A8A"
+                                                       MaxLength="50"
+                                                       HeightRequest="35"
+                                                       FontFamily="PoppinsLight"
+                                                       BackgroundColor="#1F1F1F">
+                                <Entry.Behaviors>
+                                    <wds:DateEntryBehavior />
+                                </Entry.Behaviors>
+                            </services:DateEntryService>
+                        </StackLayout>
+                        <StackLayout Grid.Column="3">
+                            <Label Text="MEDIÇÃO ESPESSURA"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="12"
+                                   TextColor="#8A8A8A"
+                                   Margin="0,0,0,5" />
+                            <!-- Entrada da MEDIÇÃO ESPESSURA do equipamento -->
+                            <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                       Keyboard="Numeric"
+                                                       FontSize="12"
+                                                       TextColor="White"
+                                                       PlaceholderColor="#8A8A8A"
+                                                       MaxLength="50"
+                                                       HeightRequest="35"
+                                                       FontFamily="PoppinsLight"
+                                                       BackgroundColor="#1F1F1F">
+                                <Entry.Behaviors>
+                                    <wds:DateEntryBehavior />
+                                </Entry.Behaviors>
+                            </services:DateEntryService>
+                        </StackLayout>
+                        <StackLayout Grid.Column="4">
+                            <Label Text="TESTES E ENSAIOS"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="12"
+                                   TextColor="#8A8A8A"
+                                   Margin="0,0,0,5" />
+                            <!-- Entrada da TESTES & ENSAIOS do equipamento -->
+                            <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                       Keyboard="Numeric"
+                                                       FontSize="12"
+                                                       TextColor="White"
+                                                       PlaceholderColor="#8A8A8A"
+                                                       MaxLength="50"
+                                                       HeightRequest="35"
+                                                       FontFamily="PoppinsLight"
+                                                       BackgroundColor="#1F1F1F">
+                                <Entry.Behaviors>
+                                    <wds:DateEntryBehavior />
+                                </Entry.Behaviors>
+                            </services:DateEntryService>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Grid.Row="20"
+                                 Grid.ColumnSpan="4">
+                        <Label Text="OBSERVAÇÃO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada OBSERVAÇÃO da ÚLTIMA INSPEÇÃO do equipamento -->
+                        <Editor TextColor="White"
+                                FontSize="12"
+                                MaxLength="1000"
+                                Keyboard="Text"
+                                HeightRequest="80"
+                                FontFamily="PoppinsLight"
+                                BackgroundColor="#1F1F1F"
+                                Placeholder="Insira aqui suas observações sobre a última Inspeção NR-13..."
+                                VerticalTextAlignment="Center"
+                                PlaceholderColor="#8A8A8A"
+                                Margin="0" />
+                    </StackLayout>
+                    <Label Grid.Row="21"
+                           Grid.ColumnSpan="4"
+                           Text="PRÓXIMA INSPEÇÃO"
+                           FontFamily="PoppinsRegular"
+                           FontSize="13"
+                           TextColor="White" />
+                    <StackLayout Grid.Row="22"
+                                 Grid.Column="0">
+                        <Label Text="PRÓXIMA EXTERNA"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da PRÓXIMA EXTERNA do equipamento -->
+                        <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                   Keyboard="Numeric"
+                                                   FontSize="12"
+                                                   TextColor="White"
+                                                   PlaceholderColor="#8A8A8A"
+                                                   MaxLength="50"
+                                                   HeightRequest="35"
+                                                   FontFamily="PoppinsLight"
+                                                   BackgroundColor="#1F1F1F">
+                            <Entry.Behaviors>
+                                <wds:DateEntryBehavior />
+                            </Entry.Behaviors>
+                        </services:DateEntryService>
+                    </StackLayout>
+                    <StackLayout Grid.Row="22"
+                                 Grid.Column="1">
+                        <Label Text="PRÓXIMA INTERNA"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da PRÓXIMA INTERNA do equipamento -->
+                        <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                   Keyboard="Numeric"
+                                                   FontSize="12"
+                                                   TextColor="White"
+                                                   PlaceholderColor="#8A8A8A"
+                                                   MaxLength="50"
+                                                   HeightRequest="35"
+                                                   FontFamily="PoppinsLight"
+                                                   BackgroundColor="#1F1F1F">
+                            <Entry.Behaviors>
+                                <wds:DateEntryBehavior />
+                            </Entry.Behaviors>
+                        </services:DateEntryService>
+                    </StackLayout>
+                    <StackLayout Grid.Row="22"
+                                 Grid.Column="2">
+                        <Label Text="MEDIÇÃO ESPESSURA "
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada da MEDIÇÃO ESPESSURA  do equipamento -->
+                        <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                   Keyboard="Numeric"
+                                                   FontSize="12"
+                                                   TextColor="White"
+                                                   PlaceholderColor="#8A8A8A"
+                                                   MaxLength="50"
+                                                   HeightRequest="35"
+                                                   FontFamily="PoppinsLight"
+                                                   BackgroundColor="#1F1F1F">
+                            <Entry.Behaviors>
+                                <wds:DateEntryBehavior />
+                            </Entry.Behaviors>
+                        </services:DateEntryService>
+                    </StackLayout>
+                    <StackLayout Grid.Row="22"
+                                 Grid.Column="3">
+                        <Label Text="TESTES E ENSAIOS"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada do TESTES & ENSAIOS do equipamento -->
+                        <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                   Keyboard="Numeric"
+                                                   FontSize="12"
+                                                   TextColor="White"
+                                                   PlaceholderColor="#8A8A8A"
+                                                   MaxLength="50"
+                                                   HeightRequest="35"
+                                                   FontFamily="PoppinsLight"
+                                                   BackgroundColor="#1F1F1F">
+                            <Entry.Behaviors>
+                                <wds:DateEntryBehavior />
+                            </Entry.Behaviors>
+                        </services:DateEntryService>
+                    </StackLayout>
+                    <StackLayout Grid.Row="23"
+                                 Grid.ColumnSpan="4">
+                        <Label Text="OBSERVAÇÃO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada OBSERVAÇÃO da PRÓXIMA INSPEÇÃO do equipamento -->
+                        <Editor TextColor="White"
+                                FontSize="12"
+                                MaxLength="1000"
+                                Keyboard="Text"
+                                HeightRequest="80"
+                                FontFamily="PoppinsLight"
+                                BackgroundColor="#1F1F1F"
+                                Placeholder="Insira aqui suas observações sobre a próxima inspeção NR-13..."
+                                VerticalTextAlignment="Center"
+                                PlaceholderColor="#8A8A8A"
+                                Margin="0" />
+                    </StackLayout>
+
+                    <Label Grid.Row="24"
+                           Grid.ColumnSpan="4"
+                           Text="ESTIMATIVA VIDA RESIDUAL"
+                           FontFamily="PoppinsRegular"
+                           FontSize="13"
+                           TextColor="White" />
+
+                    <StackLayout Grid.Row="25"
+                                 Grid.Column="0">
+                        <Label Text="TAXA CORROSÃO ATUAL (TCA-MM)"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada TAXA CORROSÃO ATUAL (TCA-MM) do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="25"
+                                 Grid.Column="1">
+                        <Label Text="TAXA CORROSÃO HISTÓRICA (TCH-MM)"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada TAXA CORROSÃO HISTÓRICA (TCH-MM) do equipamento -->
+                        <Entry TextColor="White"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0" />
+                    </StackLayout>
+
+                    <Label Grid.Row="26"
+                           Grid.ColumnSpan="4"
+                           Text="MAIOR TAXA CORROSÃO ATUAL"
+                           FontFamily="PoppinsRegular"
+                           FontSize="13"
+                           TextColor="White" />
+                    <StackLayout Grid.Row="27"
+                                 Grid.Column="0">
+                        <Label Text="(MM / ANO)"
+                               FontFamily="PoppinsRegular"
+                               FontSize="12"
+                               TextColor="#8A8A8A"
+                               Margin="0,0,0,5" />
+                        <!-- Entrada (MM / ANO) MAIOR TAXA CORROSÃO ATUAL do equipamento -->
+                        <services:DateEntryService Placeholder="DD/MM/YYYY"
+                                                   Keyboard="Numeric"
+                                                   FontSize="12"
+                                                   TextColor="White"
+                                                   PlaceholderColor="#8A8A8A"
+                                                   MaxLength="50"
+                                                   HeightRequest="35"
+                                                   FontFamily="PoppinsLight"
+                                                   BackgroundColor="#1F1F1F">
+                            <Entry.Behaviors>
+                                <wds:DateEntryBehavior />
+                            </Entry.Behaviors>
+                        </services:DateEntryService>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="28"
+                                 Grid.ColumnSpan="4">
+                        <Label Text="INSERIR RELATÓRIO DIGITAL"
+                               FontFamily="PoppinsRegular"
+                               FontSize="13"
+                               TextColor="White" />
+                        <Label Text="Os seguintes formatos de arquivos são suportados: .xls, .xlsx, .png, .jpeg, .jpg, .doc, .docx, .pdf"
+                               FontFamily="PoppinsRegular"
+                               FontSize="11"
+                               TextColor="#8A8A8A" />
+                    </StackLayout>
+
+                    <Grid Grid.Row="29"
+                          Grid.ColumnSpan="4"
+                          ColumnSpacing="20"
+                          RowSpacing="10"
+                          RowDefinitions="*,*,*,*"
+                          ColumnDefinitions="*,*,*,*">
+                        <StackLayout Grid.Row="0"
+                                     Grid.Column="0">
+                            <!-- Button Upload de Relatórios Digitais-->
+                            <Label Margin="-7,0,0,0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Start"
+                                   wds:CursorBehavior.Cursor="Hand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="&#xe937;"
+                                              FontFamily="icons"
+                                              FontSize="50"
+                                              TextColor="#8A8A8A" />
+                                        <Span Text="Upload Arquivo"
+                                              FontFamily="PoppinsRegular"
+                                              FontSize="11"
+                                              TextColor="#8A8A8A" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <!-- Caminho arquivo-->
+                            <Label Text="nome_arquivo.pdf"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="10"
+                                   TextColor="White"
+                                   Margin="0,10,0,0" />
+                        </StackLayout>
+
+                        <!-- Entrada de nome do Relatório -->
+                        <Entry Grid.Row="1"
+                               Grid.Column="0"
+                               MaxLength="50"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0"
+                               Placeholder="Insira o nome do relatório*" />
+                        <!-- Entrada da descrição do Relatório -->
+                        <Entry Grid.Row="2"
+                               Grid.ColumnSpan="3"
+                               MaxLength="200"
+                               Keyboard="Text"
+                               BackgroundColor="#1F1F1F"
+                               Margin="0,10,0,10"
+                               Placeholder="Insira uma descrição para esse relatório" />
+                        <!-- Button adicionar novo Relatório Digital -->
+                        <StackLayout Grid.Row="3"
+                                     Grid.Column="0"
+                                     Orientation="Horizontal"
+                                     HorizontalOptions="Start"
+                                     wds:CursorBehavior.Cursor="Hand">
+                            <Label Text="&#xe938;"
+                                   FontFamily="icons"
+                                   FontSize="25"
+                                   Margin="0,0,5,0"
+                                   TextColor="#8A8A8A"
+                                   VerticalTextAlignment="Center" />
+                            <Label Text=" Adicionar novo arquivo"
+                                   FontFamily="PoppinsRegular"
+                                   FontSize="11"
+                                   TextColor="#8A8A8A"
+                                   VerticalTextAlignment="Center" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Grid.Row="30"
+                                 Grid.ColumnSpan="4">
+                        <Label Text="INSERIR IMAGENS DO EQUIPAMENTO"
+                               FontFamily="PoppinsRegular"
+                               FontSize="13"
+                               TextColor="White" />
+                        <Label Text="Insira até 6 imagens de uma vez a esse equipamento&#10;Os seguintes formatos de de imagens são suportados:  .png, .jpg, .jpeg, .webp"
+                               FontFamily="PoppinsRegular"
+                               FontSize="11"
+                               TextColor="#8A8A8A" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="31"
+                                 Grid.ColumnSpan="4">
+                        <Grid ColumnSpacing="20"
+                              RowDefinitions="*,*,*"
+                              ColumnDefinitions="*,*,*,*">
+                            <!-- Button Upload de Relatórios Digitais-->
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Start"
+                                   wds:CursorBehavior.Cursor="Hand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="&#xe92c;"
+                                              FontFamily="icons"
+                                              FontSize="50"
+                                              TextColor="#8A8A8A" />
+                                        <Span Text=" Upload Imagem"
+                                              FontFamily="PoppinsRegular"
+                                              FontSize="11"
+                                              TextColor="#8A8A8A" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <StackLayout Grid.Row="1"
+                                         Grid.ColumnSpan="4"
+                                         Margin="0,10,0,10"
+                                         Orientation="Horizontal">
+                                <!-- Caminho arquivo imagens-->
+                                <Label Text="nome_imagem.png"
+                                       FontFamily="PoppinsRegular"
+                                       FontSize="10"
+                                       TextColor="White" />
+                            </StackLayout>
+                            <!-- Entrada de descrição sobre as imagens inseridas -->
+                            <Entry Grid.Row="2"
+                                   Grid.ColumnSpan="3"
+                                   MaxLength="200"
+                                   Keyboard="Text"
+                                   BackgroundColor="#1F1F1F"
+                                   Margin="0"
+                                   Placeholder="Escreva aqui algumas observações ou detalhes sobre as imagens inseridas." />
+                        </Grid>
+                        <Label Text="RECOMENDAÇÕES"
+                               FontFamily="PoppinsRegular"
+                               FontSize="13"
+                               TextColor="White"
+                               Margin="0,20,0,20" />
+                        <!-- Entrada das Recomendações do Equipamento -->
+                        <Editor TextColor="White"
+                                FontSize="12"
+                                MaxLength="1000"
+                                Keyboard="Text"
+                                HeightRequest="80"
+                                FontFamily="PoppinsLight"
+                                BackgroundColor="#1F1F1F"
+                                Placeholder="Insira aqui as recomendações para esse equipamento..."
+                                VerticalTextAlignment="Center"
+                                PlaceholderColor="#8A8A8A"
+                                Margin="0" />
+                    </StackLayout>
+
+                    <!-- Button registrar informações -->
+                    <StackLayout Grid.Row="32"
+                                 Grid.ColumnSpan="4"
+                                 HorizontalOptions="Center"
+                                 Margin="0,0,0,50">
+                        <Button Text="Registrar"
+                                BackgroundColor="{Binding BackgroundBtn.BackgroundColor}"
+                                wds:CursorBehavior.Cursor="Hand" />
+                    </StackLayout>
+
+                </Grid>
+            </StackLayout>
+
+
+        </Frame>
+    </StackLayout>
+</ContentView>
